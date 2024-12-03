@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercices PHP</title>
+</head>
+<body>
+    <h1>Exercices PHP</h1>
+
+    <!-- Ex 1 -->
+    <h2>1. Tableau associatif étudiant</h2>
+    <?php
+    $personne = [
+        'nom' => 'Dupont',
+        'prenom' => 'Alice',
+        'matricule' => '654321'
+    ];
+    echo "Nom : " . $personne['nom'] . "<br>";
+    echo "Prénom : " . $personne['prenom'] . "<br>";
+    echo "Matricule : " . $personne['matricule'];
+    ?>
+
+    <!-- Ex 2 -->
+    <h2>2. Ajouter une clé et modifier sa valeur</h2>
+    <?php
+    $personne['note'] = 16;
+    $personne['note'] = 20; // Modification
+    echo "Nom : " . $personne['nom'] . "<br>";
+    echo "Note : " . $personne['note'];
+    ?>
+
+    <!-- Ex 3 -->
+    <h2>3. Parcourir un tableau associatif de produits</h2>
+    <?php
+    $articles = [
+        'Article1' => 120,
+        'Article2' => 250,
+        'Article3' => 180
+    ];
+    foreach ($articles as $nom => $prix) {
+        echo "$nom coûte $prix DH<br>";
+    }
+    ?>
+
+    <!-- Ex 4 -->
+    <h2>4. Moyenne des scores</h2>
+    <?php
+    $evaluations = [
+        'Élève1' => 14,
+        'Élève2' => 16,
+        'Élève3' => 19,
+        'Élève4' => 13,
+        'Élève5' => 15
+    ];
+    $moyenne = array_sum($evaluations) / count($evaluations);
+    echo "La moyenne des scores est : $moyenne";
+    ?>
+
+    <!-- Ex 5 -->
+    <h2>5. Tri d'un tableau par population</h2>
+    <?php
+    $nations = [
+        'Italie' => 60000000,
+        'Canada' => 37000000,
+        'Allemagne' => 82000000
+    ];
+    arsort($nations); // Tri par ordre décroissant
+    foreach ($nations as $nom => $population) {
+        echo "$nom : $population habitants<br>";
+    }
+    ?>
+
+    <!-- Ex 6 -->
+    <h2>6. Formulaire avec récupération via $_POST</h2>
+    <form method="POST">
+        Nom : <input type="text" name="nom"><br>
+        Âge : <input type="text" name="age"><br>
+        <button type="submit" name="submit_ex6">Envoyer</button>
+    </form>
+    <?php
+    if (isset($_POST['submit_ex6'])) {
+        $nom = $_POST['nom'];
+        $age = $_POST['age'];
+        echo "Bienvenue, $nom, vous avez $age ans !";
+    }
+    ?>
+
+    <!-- Ex 7 -->
+    <h2>7. Validation simple</h2>
+    <form method="POST">
+        Âge : <input type="text" name="age_validation"><br>
+        <button type="submit" name="submit_ex7">Envoyer</button>
+    </form>
+    <?php
+    if (isset($_POST['submit_ex7'])) {
+        $age = $_POST['age_validation'];
+        if (!is_numeric($age) || $age <= 0) {
+            echo "L'âge doit être un entier supérieur à 0.";
+        } else {
+            echo "Bienvenue, vous avez $age ans !";
+        }
+    }
+    ?>
+
+    <!-- Ex 8 -->
+    <h2>8. Liste déroulante pour choisir une couleur</h2>
+    <form method="POST">
+        Choisissez une couleur :
+        <select name="couleur">
+            <option value="jaune">Jaune</option>
+            <option value="gris">Gris</option>
+            <option value="violet">Violet</option>
+        </select>
+        <button type="submit" name="submit_ex8">Envoyer</button>
+    </form>
+    <?php
+    if (isset($_POST['submit_ex8'])) {
+        $couleur = $_POST['couleur'];
+        echo "Votre couleur préférée est : $couleur";
+    }
+    ?>
+
+    <!-- Ex 9 -->
+    <h2>9. Somme de deux nombres</h2>
+    <form method="GET">
+        Nombre 1 : <input type="text" name="nombre1"><br>
+        Nombre 2 : <input type="text" name="nombre2"><br>
+        <button type="submit" name="submit_ex9">Calculer</button>
+    </form>
+    <?php
+    if (isset($_GET['submit_ex9'])) {
+        $nombre1 = $_GET['nombre1'];
+        $nombre2 = $_GET['nombre2'];
+        echo "La somme est : " . ($nombre1 + $nombre2);
+    }
+    ?>
+
+    <!-- Ex 10 -->
+    <h2>10. Type de compte avec message conditionnel</h2>
+    <form method="POST">
+        Type de compte :
+        <select name="type">
+            <option value="Superviseur">Superviseur</option>
+            <option value="Employé">Employé</option>
+        </select>
+        <button type="submit" name="submit_ex10">Envoyer</button>
+    </form>
+    <?php
+    if (isset($_POST['submit_ex10'])) {
+        $type = $_POST['type'];
+        if ($type == 'Superviseur') {
+            echo "Bienvenue, superviseur !";
+        } else {
+            echo "Bienvenue, employé !";
+        }
+    }
+    ?>
+    
+    
+</body>
+</html>
